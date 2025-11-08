@@ -77,7 +77,7 @@ COPY backend/ ./backend
 COPY --from=frontend-build /app/frontend/build ./backend/static
 
 # Expose backend port
-EXPOSE 5000
+EXPOSE 5001
 
 WORKDIR /app/backend
 
