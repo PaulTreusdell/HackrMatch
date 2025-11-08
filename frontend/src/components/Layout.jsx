@@ -1,11 +1,11 @@
 import React from "react";
-import "../App.css";
+import "./Header.css";
 export default Header;
 
 function Header(){
   return (
         <header className="header">
-            
+         
             <nav>
                 <ul>
                     <li><a href="/">Match</a></li>
@@ -13,7 +13,6 @@ function Header(){
                     <li><a href="/">Sign Up</a></li>
                 </ul>
             </nav>
-
         </header>
   ); 
 };

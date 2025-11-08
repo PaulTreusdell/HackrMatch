@@ -1,34 +1,35 @@
 import Header from "../components/Layout"
+import React from "react";
+import "./MainPage.css"
 
 export default function MainPage() {
   return (
-    <div style={styles.container}>
-      
-      <header styles = {styles.header}>
-        <Header/>{     
-            }
-      </header>
+    <div className = "main-container">
+
+    <Header />
       
 
-      <main style={styles.main}>
+      <main className = "main-content">
                 <h1>Welcome to HackrMatch!</h1>
-        <p>This is the main page of your app. Add content, buttons, or cards here.</p>
-        <button style={styles.button} onClick={() => alert("Button clicked!")}>
-          Try Now
+        <p>
+          HackrMatch helps developers and students find and join teams for hackathons and
+          projects! Connect with like-minded individuals,
+          collaborate, and build amazing things together!
+        </p>
+        <button className="cta-button" onClick={() => alert("Get Started!")}>
+          Get Started
         </button>
       </main>
-      <footer style={styles.footer}>
+
+    <body className = "body-content">
+        Using our proprietary algorithm.
+    </body>
+
+      <footer className="footer">
         <p>© 2025 HackrMatch. All rights reserved.</p>
       </footer>
     </div>
   );
 }
 
-const styles = {
-  container: { textAlign: 'center', fontFamily: 'Arial, sans-serif' },
-  header: { backgroundColor: '#61dafb', padding: '2rem', color: '#fff' },
-  main: { padding: '2rem' },
-  button: { padding: '10px 20px', fontSize: '16px', cursor: 'pointer' },
-  footer: { backgroundColor: '#282c34', color: 'white', padding: '1rem', marginTop: '2rem' },
-};
 
