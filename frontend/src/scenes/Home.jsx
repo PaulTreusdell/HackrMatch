@@ -1,7 +1,9 @@
+import Header from "../components/Layout"
+
 export default function HomePage() {
   return (
-    <>
-    <p>home</p>
-    </>
+    <div>
+        
+    </div>
   )
 }
