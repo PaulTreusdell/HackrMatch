@@ -13,7 +13,7 @@ const handleSubmit = async (data, navigate) => {
       withCredentials: true
     })
     if (res.status === 201) {
-      navigate("/home")
+      navigate("/success")
     }
   } catch (e) {
     // This will now catch the specific "Username already registered" error from main.py

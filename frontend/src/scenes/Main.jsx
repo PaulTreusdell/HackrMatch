@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./MainPage.css"
 import teamWork from "../images/teamwork.png"
+import techyimage from "../images/techyimage.jpg"
+import brainyimage from "../images/brainyimage.jpg"
 import Header from "../components/Header"
 
 export default function MainPage() {
@@ -24,19 +26,21 @@ export default function MainPage() {
         </button>
       </main>
 
-    <section className="body-section">
-        <div className="text-content">
-          <h2>Smart Team Matching</h2>
-          <p>
-            Using our proprietary algorithm, we provide dynamic recommendations
-            for each individual based on their inputted profile. Whether you’re
-            looking for a UI/UX engineer, data scientist, or backend developer,
-            HackrMatch finds your perfect teammate!
-          </p>
+      <section className="features">
+        <div className="feature-tile">
+          <img src={teamWork} alt="Smart Team Matching" className="feature-image" />
+          <h3>Smart Team Matching</h3>
+          <p>Personalized matches using profile similarity, skills and interests to assemble balanced teams fast.</p>
         </div>
-        <div className="image-content">
-          <img src={teamWork} alt="Teamwork" className="body-image" />
-
+        <div className="feature-tile">
+          <img src={techyimage} alt="Project Discovery" className="feature-image" />
+          <h3>Project Discovery</h3>
+          <p>Find projects and teammates that align with your goals and discover opportunities that match your skillset.</p>
+        </div>
+        <div className="feature-tile">
+          <img src={brainyimage} alt="Collaboration Tools" className="feature-image" />
+          <h3>Collaboration Tools</h3>
+          <p>Built-in workflows and shared links to help your team prototype, coordinate, and ship faster.</p>
         </div>
       </section>
 
