@@ -5,14 +5,13 @@ import security
 
 def create_user(db: Session, user: schemas.UserCreate):
     db_user = models.User(
-        social=user.social,
         username=user.username,
         password=security.hash_password(user.password),  # hash here
-        skills=user.skills,
-        preferences=user.preferences,
+        linkedin_link=user.linkedin_link,
         interests=user.interests,
-        skill=user.skill,
-        major=user.major
+        skills=user.skills,
+        major=user.major,
+        preferences=user.preferences
     )
     db.add(db_user)
     db.commit()

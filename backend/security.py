@@ -1,10 +1,12 @@
-from passlib.context import CryptContext
+from argon2 import PasswordHasher
 
-# Use bcrypt hashing
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+ph = PasswordHasher()
 
 def hash_password(password: str) -> str:
-    return pwd_context.hash(password)
+    return ph.hash(password)
 
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
+def verify_password(password: str, hashed: str) -> bool:
+    try:
+        return ph.verify(hashed, password)
+    except:
+        return False

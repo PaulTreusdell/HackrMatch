@@ -6,7 +6,7 @@ export default function Form({type, submit}) {
   const [data, setData] = useState({
     username: "", 
     password: "",
-    linkedinLink: "",
+    linkedin_link: "",
     interests: "",
     skills: "",
     major: "",
@@ -63,10 +63,10 @@ export default function Form({type, submit}) {
             {type === "register" && (
               <>
                 <input 
-                  name="linkedinLink"
+                  name="linkedin_link"
                   className="user-input"
                   placeholder="LinkedIn Profile URL"
-                  value={data.linkedinLink}
+                  value={data.linkedin_link}
                   onChange={changeValue}
                   type="url"
                   required
@@ -100,7 +100,7 @@ export default function Form({type, submit}) {
                 />
                 <br />
                 <input 
-                  name="desired skills"
+                  name="preferences"
                   className="user-input"
                   placeholder="Team Preferences (e.g., Backend, Java, UI/UX)"
                   value={data.preferences}

@@ -5,7 +5,10 @@ import axios from "axios"
 
 const handleSubmit = async (data, navigate) => {
   try {
-    const res = await axios.post("http://localhost:5000/api/auth/register", data, {
+    const res = await axios.post("http://localhost:8000/users/", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
       withCredentials: true
     })
     if (res.status === 201) {

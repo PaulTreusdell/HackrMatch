@@ -4,7 +4,15 @@ import axios from "axios"
 
 const handleSubmit = async (data, navigate) => {
   try {
-    const res = await axios.post("http://localhost:5000/api/auth/login", data, {
+    const newData = {
+      username: data.username,
+      password: data.password
+    };
+
+    const res = await axios.post("http://localhost:8000/login", newData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
       withCredentials: true //need credentials for cookies
     })
     if (res.status == 200) {
