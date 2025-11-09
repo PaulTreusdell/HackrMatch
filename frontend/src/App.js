@@ -4,6 +4,7 @@ import LoginPage from "./scenes/Login"
 import RegisterPage from "./scenes/Register"
 import MainPage from "./scenes/Main"
 import Layout from "./components/Layout"
+import MatchPage from "./scenes/Match"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/home" element={<HomePage />} />
+            <Route path="/match" element={<MatchPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
