@@ -10,7 +10,7 @@ function Header(){
                 <ul>
                     <li><a href="/">Match</a></li>
                     <li><a href="/login">Login</a></li>
-                    <li><a href="/">Sign Up</a></li>
+                    <li><a href="/register">Sign Up</a></li>
                 </ul>
             </nav>
         </header>
