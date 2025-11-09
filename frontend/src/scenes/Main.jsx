@@ -1,9 +1,12 @@
 import Header from "../components/Layout"
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./MainPage.css"
 import teamWork from "../images/teamwork.png"
 
 export default function MainPage() {
+  const navigate = useNavigate();
+
   return (
     <div className = "main-container">
 
@@ -18,7 +21,7 @@ export default function MainPage() {
           projects! Connect with like-minded individuals,
           collaborate, and build amazing things together!
         </p>
-        <button className="cta-button" onClick={() => alert("Get Started!")}>
+        <button className="cta-button" onClick={() => navigate("/register")}>
           Get Started
         </button>
       </main>

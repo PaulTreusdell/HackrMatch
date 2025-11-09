@@ -32,7 +32,7 @@ export default function Form({type, submit}) {
               maxLength="20"
               required>
             </input> <br />
-            {type === "register" && (
+            {/* {type === "register" && (
             <>
               <input 
                 name="email"
@@ -44,7 +44,7 @@ export default function Form({type, submit}) {
                 maxLength="30"
                 required>
               </input> <br />
-            </>)}
+            </>)} */}
             <input
               name="password" 
               className="password-input" 
