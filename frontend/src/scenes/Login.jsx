@@ -1,28 +1,26 @@
-import '../App.css';
-import LoginButton from '../components/LoginButton';
-import LogoutButton from '../components/LogoutButton';
-import Profile from '../components/Profile';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from "react-router-dom"
+import Form from "../components/Form" 
+import axios from "axios"
+
+const handleSubmit = async (data, navigate) => {
+  try {
+    const res = await axios.post("http://localhost:5000/api/auth/login", data, {
+      withCredentials: true //need credentials for cookies
+    })
+    if (res.status == 200) {
+      navigate("/home")
+    }
+  }
+  catch(e) {
+    console.error(`Error Logging in ${e}`)
+  }
+}
 
 export default function LoginPage() {
-  const { isLoading, error } = useAuth0();
-
-  if (error) {
-    return <div>Oops... {error.message}</div>;
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
+  const navigate = useNavigate()
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>HackrMatch</h1>
-        <LoginButton />
-        <LogoutButton />
-        <Profile />
-      </header>
-    </div>
-  );
+    <Form type="login" submit={(data) => {
+      handleSubmit(data, navigate)
+    }}/>
+  )
 }
