@@ -1,17 +1,15 @@
-import Header from "../components/Layout"
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./MainPage.css"
 import teamWork from "../images/teamwork.png"
+import Header from "../components/Header"
 
 export default function MainPage() {
   const navigate = useNavigate();
 
   return (
     <div className = "main-container">
-
-    <Header />
-      
+      <Header />
 
       <main className = "main-content">
         <h1>Welcome to HackrMatch!</h1>

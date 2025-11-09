@@ -3,16 +3,22 @@ import HomePage from "./scenes/Home"
 import LoginPage from "./scenes/Login"
 import RegisterPage from "./scenes/Register"
 import MainPage from "./scenes/Main"
+import Layout from "./components/Layout"
 
 function App() {
   return (
     <div className="app">
       <BrowserRouter>
         <Routes>
+          {/* Main page without Layout wrapper */}
           <Route path="/" element={<MainPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/home" element={<HomePage />} />
+          
+          {/* Other pages with Layout wrapper */}
+          <Route element={<Layout />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/home" element={<HomePage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
