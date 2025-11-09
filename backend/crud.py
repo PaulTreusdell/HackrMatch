@@ -23,14 +23,8 @@ def create_user(db: Session, user: schemas.UserCreate):
     """
     db_user = models.User(
         username=user.username,
-<<<<<<< HEAD
         password=security.hash_password(user.password),  # hash here
         linkedin_link=user.linkedin_link,
-=======
-        password=security.hash_password(user.password),  # Hash password on creation
-        skills=user.skills,
-        preferences=user.preferences,
->>>>>>> 301fc0c999bd6e6bf62251ee41ff05e5602c98d1
         interests=user.interests,
         skills=user.skills,
         major=user.major,

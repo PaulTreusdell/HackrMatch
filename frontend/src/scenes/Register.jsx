@@ -36,7 +36,6 @@ const handleSubmit = async (data, navigate) => {
   };
 
   try {
-<<<<<<< HEAD
     const res = await axios.post("http://localhost:8000/users/", data, {
       headers: {
         "Content-Type": "application/json",
@@ -45,15 +44,6 @@ const handleSubmit = async (data, navigate) => {
     })
     if (res.status === 201) {
       navigate("/home")
-=======
-    const res = await axios.post("http://localhost:8000/users/", payload);
-
-    if (res.status === 200 || res.status === 201) {
-      navigate("/home");
-    } else {
-      console.error("Unexpected response:", res);
-      alert("Unexpected server response.");
->>>>>>> 301fc0c999bd6e6bf62251ee41ff05e5602c98d1
     }
   } catch (e) {
     // This will now catch the specific "Username already registered" error from main.py

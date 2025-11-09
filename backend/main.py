@@ -56,19 +56,9 @@ def read_user(user_id: str, db: Session = Depends(get_db)):
     return db_user
 
 @app.post("/login")
-<<<<<<< HEAD
 def login(user: schemas.UserLogin, db: Session = Depends(get_db)):
     db_user = crud.authenticate_user(db, user.username, user.password)
     if not db_user:
-=======
-def login(username: str, password: str, db: Session = Depends(get_db)):
-    """
-    Authenticate a user and return a message.
-    (In a real app, you'd return a JWT token here)
-    """
-    user = crud.authenticate_user(db, username, password)
-    if not user:
->>>>>>> 301fc0c999bd6e6bf62251ee41ff05e5602c98d1
         raise HTTPException(status_code=401, detail="Invalid credentials")
     return {"message": "Login successful", "user_id": str(db_user.id)}
 
