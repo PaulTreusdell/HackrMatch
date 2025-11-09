@@ -1,5 +1,5 @@
 from sentence_transformers import SentenceTransformer, util
-from .schemas import User
+from schemas import User
 import os
 
 #Similarities
