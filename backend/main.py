@@ -87,3 +87,7 @@ def get_similar_users(user_id: str, db: Session = Depends(get_db)):
     filtered = {uid: sim for uid, sim in similarities.items() if sim > 0.5}
     
     return {"similar_users": filtered}
+
+@app.post("/users/{me}/accept/{other}")
+def accept_user(me: str, other: str):
+    return {"status": "ok"}

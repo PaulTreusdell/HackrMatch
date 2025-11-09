@@ -8,6 +8,8 @@ export default function Match() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [showLink, setShowLink] = useState(null);  
+
   const { userId } = useAuth();
 
   useEffect(() => {
@@ -75,6 +77,7 @@ export default function Match() {
               interests,
               skill: skills.length ? skills[0] : "",
               major: u.major || "",
+              linkedin_link: u.linkedin_link || ""
             };
           })
           // Extra filter to be safe: remove any profile matching current user id
@@ -97,10 +100,22 @@ export default function Match() {
     };
   }, [userId]);
 
-  const handleDecision = (accepted) => {
-    // TODO: optionally POST decision to backend
-    setCurrentIndex((prev) => prev + 1);
-  };
+  const handleDecision = async (accepted) => {
+  const p = profiles[currentIndex];
+  const base = "http://localhost:8000";
+
+  if (accepted) {
+    // record match acceptance
+    await fetch(`${base}/users/${userId}/accept/${p.id}`, { method: "POST" });
+
+    // show linkedin link
+    if (p.linkedin_link) {
+      setShowLink(p.linkedin_link);
+    }
+  }
+
+  setCurrentIndex((prev) => prev + 1);
+};
 
   if (loading) return <p className="center-message">Loading matches...</p>;
   if (error) return <p className="center-message">{error}</p>;
@@ -136,32 +151,54 @@ export default function Match() {
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
-  <h2 style={{ margin: 0 }}>{clean(currentProfile.username)}</h2>
-  <p style={{ margin: '6px 0' }}><strong>Skills:</strong> {formatList(currentProfile.skills)}</p>
-  <p style={{ margin: '6px 0' }}><strong>Preferences:</strong> {formatList(currentProfile.preferences)}</p>
-  <p style={{ margin: '6px 0' }}><strong>Interests:</strong> {formatList(currentProfile.interests)}</p>
-  <p style={{ margin: '6px 0' }}><strong>Skill:</strong> {clean(currentProfile.skill)}</p>
-  <p style={{ margin: '6px 0' }}><strong>Major:</strong> {clean(currentProfile.major)}</p>
+  <div style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "20px",
+    paddingTop: "40px"
+  }}>
 
-        <div style={styles.buttonContainer}>
-          <button
-            style={{ ...styles.button, backgroundColor: "#f44336" }}
-            onClick={() => handleDecision(false)}
-          >
-            Reject
-          </button>
-          <button
-            style={{ ...styles.button, backgroundColor: "#4CAF50" }}
-            onClick={() => handleDecision(true)}
-          >
-            Accept
-          </button>
-        </div>
+    {showLink && (
+      <div style={{
+        width: "360px",
+        backgroundColor: "white",
+        borderRadius: "12px",
+        boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+        padding: "20px",
+        textAlign: "center"
+      }}>
+        <p style={{margin:0, fontWeight:"bold"}}>You matched!</p>
+        <p style={{margin:"8px 0"}}>Connect on LinkedIn:</p>
+        <a href={showLink} target="_blank" rel="noreferrer">{showLink}</a>
+      </div>
+    )}
+
+    <div style={styles.card}>
+      <h2 style={{ margin: 0 }}>{clean(currentProfile.username)}</h2>
+      <p style={{ margin: '6px 0' }}><strong>Skills:</strong> {formatList(currentProfile.skills)}</p>
+      <p style={{ margin: '6px 0' }}><strong>Preferences:</strong> {formatList(currentProfile.preferences)}</p>
+      <p style={{ margin: '6px 0' }}><strong>Interests:</strong> {formatList(currentProfile.interests)}</p>
+      <p style={{ margin: '6px 0' }}><strong>Skill:</strong> {clean(currentProfile.skill)}</p>
+      <p style={{ margin: '6px 0' }}><strong>Major:</strong> {clean(currentProfile.major)}</p>
+
+      <div style={styles.buttonContainer}>
+        <button
+          style={{ ...styles.button, backgroundColor: "#f44336" }}
+          onClick={() => handleDecision(false)}
+        >
+          Reject
+        </button>
+        <button
+          style={{ ...styles.button, backgroundColor: "#4CAF50" }}
+          onClick={() => handleDecision(true)}
+        >
+          Accept
+        </button>
       </div>
     </div>
-  );
+  </div>
+ );
 }
 
 // Styles
@@ -171,7 +208,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     height: "75vh",
-    backgroundColor: "#ececec",
+    //backgroundColor: "#ececec",
   },
   card: {
     width: "360px",
