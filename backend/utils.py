@@ -1,5 +1,5 @@
 from sentence_transformers import SentenceTransformer, util
-from backend.schemas.models import User
+from .schemas import User
 import os
 
 #Similarities
@@ -12,7 +12,7 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 
 def flatten_user(user: User) -> str:
   components = []
-  excluded_fields = {'username', 'password'}
+  excluded_fields = {'id', 'social', 'username', 'password'}
   for key, value in user.model_dump().items():
     if key in excluded_fields:
       continue
