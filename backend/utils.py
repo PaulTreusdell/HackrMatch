@@ -1,6 +1,8 @@
 from sentence_transformers import SentenceTransformer, util
-from schemas import User
+from schemas import UserRead
 import os
+
+
 
 #Similarities
 
@@ -10,7 +12,7 @@ os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "true"
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-def flatten_user(user: User) -> str:
+def flatten_user(user: UserRead) -> str:
   components = []
   excluded_fields = {'id', 'social', 'username', 'password'}
   for key, value in user.model_dump().items():
@@ -22,7 +24,7 @@ def flatten_user(user: User) -> str:
       components.append(value)
   return " ".join(components)
 
-def get_similarity(inputUser: User, db_users:list[User]) -> dict[int, float]:
+def get_similarity(inputUser: UserRead, db_users:list[UserRead]) -> dict[int, float]:
   #get all users that arent input
   other_users = [user for user in db_users if user.id != inputUser.id]
 
